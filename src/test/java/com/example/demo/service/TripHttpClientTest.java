@@ -28,6 +28,7 @@ class TripHttpClientTest {
     @BeforeEach
     void setUp() throws IOException {
         TripServiceMock.mockBookingFailed(wireMockServer);
+        TripServiceMock.mockBookingSystemError(wireMockServer);
         TripServiceMock.mockBookingSuccess(wireMockServer);
     }
 
@@ -42,5 +43,11 @@ class TripHttpClientTest {
         final BookingTripResponse bookingTripResponse = tripHttpClient.bookingTrips("2", BookingTripRequest.fromEntity(new OrderContractEntity()));
         assertEquals("400", bookingTripResponse.getStatus());
         assertEquals("订票失败. 票卖完了", bookingTripResponse.getMessage());
+    }
+    @Test
+    void should_return_booking__system_failed_response() {
+        final BookingTripResponse bookingTripResponse = tripHttpClient.bookingTrips("3", BookingTripRequest.fromEntity(new OrderContractEntity()));
+        assertEquals("400", bookingTripResponse.getStatus());
+        assertEquals("系统错误请联系管理员", bookingTripResponse.getMessage());
     }
 }

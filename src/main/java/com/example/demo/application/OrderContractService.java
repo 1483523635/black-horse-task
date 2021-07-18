@@ -20,10 +20,10 @@ public class OrderContractService {
     public BookingTicketDto bookingTicket(String contractId) {
         final Optional<OrderContractEntity> orderContractEntityOptional = orderContractRepository.findById(Long.parseLong(contractId));
         if (!orderContractEntityOptional.isPresent()) {
-            return new BookingTicketDto("订票失败:订单合同没找到");
+            return new BookingTicketDto("订票失败:订单合同没找到", "400", null);
         }
         final OrderContractEntity orderContractEntity = orderContractEntityOptional.get();
         final BookingTripResponse bookingTripResponse = tripHttpClient.bookingTrips(contractId, BookingTripRequest.fromEntity(orderContractEntity));
-        return new BookingTicketDto(bookingTripResponse.getMessage());
+        return new BookingTicketDto(bookingTripResponse.getMessage(), bookingTripResponse.getStatus(), bookingTripResponse.getTicketId());
     }
 }

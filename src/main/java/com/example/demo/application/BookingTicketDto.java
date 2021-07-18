@@ -13,4 +13,6 @@ import lombok.ToString;
 @ToString
 public class BookingTicketDto {
     private String result;
+    private String status;
+    private String ticketId;
 }

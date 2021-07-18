@@ -17,7 +17,7 @@ class OrderContractControllerTest {
     @Test
     void should_return_booking_failed_when_contract_id_not_found() throws IOException {
         final OrderContractService orderContractService = mock(OrderContractService.class);
-        when(orderContractService.bookingTicket("9")).thenReturn(new BookingTicketDto("预约失败,原因：票卖完了"));
+        when(orderContractService.bookingTicket("9")).thenReturn(new BookingTicketDto("预约失败,原因：采购合同没找到"));
         final OrderContractController orderContractController = new OrderContractController(orderContractService);
 
         final String bodyStr = given().contentType(APPLICATION_JSON_VALUE).standaloneSetup(orderContractController).when()
@@ -25,7 +25,7 @@ class OrderContractControllerTest {
 
         ObjectMapper mapper = new ObjectMapper();
         final BookingTicketDto bookingTicketDto = mapper.readerFor(BookingTicketDto.class).readValue(bodyStr);
-        assertEquals("预约失败,原因：票卖完了", bookingTicketDto.getResult());
+        assertEquals("预约失败,原因：采购合同没找到", bookingTicketDto.getResult());
 
     }
 

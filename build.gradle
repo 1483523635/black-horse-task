@@ -45,7 +45,7 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:mysql'
-    testImplementation 'io.rest-assured:rest-assured:4.4.0'
+    testImplementation 'io.rest-assured:rest-assured-all:4.4.0'
     testImplementation 'io.rest-assured:spring-mock-mvc:4.4.0'
     testImplementation "org.mockito:mockito-core:3.+"
     implementation 'io.github.openfeign:feign-okhttp:10.11'
@@ -53,7 +53,10 @@ dependencies {
     implementation 'io.github.openfeign:feign-gson:10.11'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
     implementation "org.flywaydb:flyway-core:6.5.7"
+    testImplementation "com.h2database:h2"
+    implementation 'com.github.tomakehurst:wiremock:2.27.2'
 }
 
 dependencyManagement {

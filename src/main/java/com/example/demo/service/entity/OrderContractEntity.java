@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "order_contact")
+@Table(name = "order_contract")
 @Entity
 @Getter
 @Setter
@@ -28,7 +28,9 @@ public class OrderContractEntity {
     private String signer;
     private String createUser;
 
+    @Column(name = "from_location")
     private String from;
+    @Column(name = "to_location")
     private String to;
     private String trainNo;
     private LocalDateTime time;

@@ -1,6 +1,12 @@
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=
+spring:
+  flyway:
+    enabled: true
+  datasource:
+    url: "jdbc:h2:mem:testdb;MODE=MYSQL"
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
 
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+trip:
+  service:
+    url: http://localhost:22222
